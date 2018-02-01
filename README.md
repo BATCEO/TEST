@@ -1598,3 +1598,8 @@ Accuracy with **Logistic Regression**            - 81.36%
 **Please excuse any typos.** 
 **Thanks for reading. If you have any feedback,suggestions I'd love to hear! .**                                                                                                    
 **Please like the kernel. Your likes are my motivation. ;) **
+<img src="/img/1.png"></img>
+<code>this is code
+aaa
+aaa
+</code>
