@@ -1,5 +1,3 @@
-# tss
-
 ---
 title: "Head Start for Data Scientist"
 output:
@@ -11,10 +9,10 @@ output:
     code_folding: show
 ---
 
-```{r setup, include=FALSE, echo=FALSE}
+```
+{r setup, include=FALSE, echo=FALSE}
 #--显示R代码  knitr包的opts_chunk$set()函数可以配置 隐藏或者显示代码 
 knitr::opts_chunk$set(echo=TRUE)
-
 ```
 
 #   IT IS WHAT IT IS - Data Science ¿¿
@@ -103,7 +101,6 @@ You will learn to use platforms like TensorFlow or Torch, which lets us apply De
 #--要深入学习，您需要学习如何处理非结构化数据 - 无论是文本，图像，
 #--您将学习使用像TensorFlow或Torch这样的平台，这使我们可以应用深度学习，而不用担心低级别的硬件要求。 你将学习强化学习，这使得像AlphaGo Zero这样的现代AI奇迹成为可能
 
-
 # WHAT IT IS NOW,...
  
 I see many new learners at Kaggle, though of making one kernal for them to have a head start.
@@ -122,7 +119,6 @@ dataset - Titanic: Machine Learning from Disaster.
 #--数据集简介
 On 14 April 1912, the [RMS Titanic](https://en.wikipedia.org/wiki/RMS_Titanic) struck a large iceberg and took approximately 1,500 of its passengers and crew below the icy depths of the Atlantic Ocean. Considered one of the worst peacetime disasters at sea, this tragic event led to the creation of numerous [safety regulations and policies](http://www.gc.noaa.gov/gcil_titanic-history.html) to prevent such a catastrophe from happening again. Some critics, however, argue that circumstances other than luck resulted in a disproportionate number of deaths. The purpose of this analysis is to explore factors that influenced a person’s likelihood to survive.
 
- 
 
 ### Software.
 #--软件
@@ -198,7 +194,6 @@ library(knitr)
 library(vcd)
 library(caret)
 
-
 # model  模型包
 library(xgboost)
 library(MLmetrics)
@@ -212,7 +207,6 @@ library(ROCR)
 library(pROC)
 library(VIM)
 library(glmnet) 
-
 ```
 
 **MARK**    - Now we can import data set.                                                                                                                               
@@ -220,15 +214,13 @@ library(glmnet)
 问：现在可以导入数据集了吧
 答：嗯  这句话为什么要翻译 真脑残
 
-```{r, message=FALSE, warning=FALSE, results='hide'}
+```
+{r, message=FALSE, warning=FALSE, results='hide'}
 
 train <- read_csv('../input/train.csv')
 test  <- read_csv('../input/test.csv')
 
-
-
 ```
-
 
 **JAMES**   - For studing the complete data set lets join test and train data set.                                          
 Before that we will add a new coloum "set" and give name as 'test' for test dataset                                          
@@ -237,7 +229,8 @@ and 'train' for train dataset to have an idea about which record it is.
 #--在此之前，我们将添加一个新的列“set”，并为测试数据集命名为“test”
 #--和“训练”列车数据集，以了解它是哪条记录。
 
-```{r , message=FALSE, warning=FALSE, results='hide'}
+```
+{r , message=FALSE, warning=FALSE, results='hide'}
 
 train$set <- "train"
 test$set  <- "test"
@@ -292,7 +285,8 @@ lets do str, names, summary, glimpse,
 4.每行有多少不同的值
 5.缺失值
 
-```{r , message=FALSE, warning=FALSE, results='hide'}
+```
+{r , message=FALSE, warning=FALSE, results='hide'}
 
 # check data 检查数据
 str(full)
@@ -305,13 +299,12 @@ lapply(full, function(x) length(unique(x)))
 
 #Check for Missing values 检查缺失值
 
-missing_values <- full %>% summarize_all(funs(sum(is.na(.))/n())) #缺失值比例  funs 函数列表  summarize_all将函数应用于每一列
-
+missing_values <- full %>% summarize_all(funs(sum(is.na(.))/n()))    #缺失值比例  funs 函数列表  summarize_all将函数应用于每一列
 missing_values <- gather(missing_values, key="feature", value="missing_pct") #gather 转化成key-value形式 
 missing_values %>%
   ggplot(aes(x=reorder(feature,-missing_pct),y=missing_pct)) +   #reorder 重新排序  默认的将第一个参数作为分类变量处理，将第二个变量重新排序 就是先分类 再排序
   geom_bar(stat="identity",fill="red")+     #geom_bar 画条形图
-  coord_flip()+theme_bw()   #coord_flip()  旋转横纵坐标  横坐标变为纵坐标 纵变横   theme_bw() 添加一个坐标的主题样式
+  coord_flip()+theme_bw()    #coord_flip()  旋转横纵坐标  横坐标变为纵坐标 纵变横   theme_bw() 添加一个坐标的主题样式
 
 
 #Useful data quality function for missing values
@@ -351,7 +344,6 @@ datatable(checkAllCols(full), style="bootstrap", class="table-condensed", option
 #map_dbl返回一个与输入长度相同的向量。
 #round(x, n) x的约数 精确到n位
 miss_pct <- map_dbl(full, function(x) { round((sum(is.na(x)) / length(x)) * 100, 1) })  #缺失值比率
-
 miss_pct <- miss_pct[miss_pct > 0]
 
 data.frame(miss=miss_pct, var=names(miss_pct), row.names=NULL) %>%
@@ -359,8 +351,8 @@ data.frame(miss=miss_pct, var=names(miss_pct), row.names=NULL) %>%
     geom_bar(stat='identity', fill='red') +
     labs(x='', y='% missing', title='Percent missing data by feature') +
     theme(axis.text.x=element_text(angle=90, hjust=1))
-
 ```
+
 
 ## Feature engineering.
 
@@ -409,7 +401,6 @@ full <- full %>%
 Use the most common code to replace NAs in the *Embarked* feature.
 #--使用常见的符号（感觉是出现次数最多的 即S）来替换 Embarked 的空值
 ```{r pp_embarked, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
-
 full$Embarked <- replace(full$Embarked, which(is.na(full$Embarked)), 'S')
 
 ```
@@ -419,8 +410,6 @@ full$Embarked <- replace(full$Embarked, which(is.na(full$Embarked)), 'S')
 Extract an individual's title from the *Name* feature.
 #--从Name特征中提取个人标题
 ```{r pp_titles, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
-
-
 
 names <- full$Name
 title <-  gsub("^.*, (.*?)\\..*$", "\\1", names)
@@ -442,7 +431,6 @@ table(title)
 #--[1300] "Miss"         "Miss"         "Miss"        
 #--[1303] "Mrs"          "Miss"         "Mr"          
 #--[1306] "Dona"         "Mr"           "Mr" 
-
 
 
 ###MISS, Mrs, Master and Mr are taking more numbers
@@ -522,8 +510,6 @@ full$ticket.size[full$ticket.unique >= 5]   <- 'Big'
 #--其实这个船票的分类有啥用 我真是不懂  难道是我翻译的有问题 还是这里面另有玄机？ 船票能说明什么问题
 ```
 
-
-
 ### Independent Variable/Target
 #--独立变量/目标
 ### Survival
@@ -554,6 +540,7 @@ kable(crude_summary, caption="2x2 Contingency Table on Survival.", format="markd
 ```
 
 ##Exploratory data analysis
+#--探索性数据分析
 **MARK**  - What is exploratory data analysis?                                                                                                       
 **JAMES** - Data science is a multidisciplinary blend of data inference, algorithmm development, and technology in order to solve analytically complex problems.                                                   
 问：什么是探索性数据分析？
@@ -568,13 +555,15 @@ In statistics, exploratory data analysis (EDA) is an approach to analyzing data 
 #--因变量/预测因子{.tabset}
 **Note - Go through each tab for different Variables**
 
+
+
 ### Relationship to Survival Rate {.tabset}
 #--存活率与各个变量之间的关系
 
-
 #### Pclass {-}
 
-```{r rate_pclass, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r rate_pclass, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Pclass, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -586,9 +575,11 @@ ggplot(full %>% filter(set=="train"), aes(Pclass, fill=Survived)) +
   theme_minimal()
 ```
 
+
 #### Sex {-}
 
-```{r rate_sex, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r rate_sex, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Sex, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -602,7 +593,8 @@ ggplot(full %>% filter(set=="train"), aes(Sex, fill=Survived)) +
 
 #### Age {-}
 
-```{r rate_age, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r rate_age, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 tbl_age <- full %>%
   filter(set=="train") %>%
@@ -622,9 +614,11 @@ ggplot(full %>% filter(set=="train"), aes(Age, fill=Survived)) +
   theme_minimal()
 ```
 
+
 #### Age Groups {-}
 
-```{r rate_age_group, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r rate_age_group, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train" & !is.na(Age)), aes(`Age Group`, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -638,7 +632,8 @@ ggplot(full %>% filter(set=="train" & !is.na(Age)), aes(`Age Group`, fill=Surviv
 
 #### SibSp {-}
 
-```{r rate_sibsp, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r rate_sibsp, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(SibSp, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -652,7 +647,8 @@ ggplot(full %>% filter(set=="train"), aes(SibSp, fill=Survived)) +
 
 #### Parch {-}
 
-```{r rate_parch, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r rate_parch, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Parch, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -666,7 +662,8 @@ ggplot(full %>% filter(set=="train"), aes(Parch, fill=Survived)) +
 
 #### Embarked {-}
 
-```{r rate_embarked, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r rate_embarked, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Embarked, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -680,7 +677,8 @@ ggplot(full %>% filter(set=="train"), aes(Embarked, fill=Survived)) +
 
 #### Title {-}
 
-```{r rate_title, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r rate_title, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train") %>% na.omit, aes(title, fill=Survived)) +
   geom_bar(position="fill") +
@@ -691,7 +689,6 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(title, fill=Survived)) +
   ggtitle("Survival Rate by Title") + 
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
 ```
 
 #### Family {-}
@@ -708,16 +705,19 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survive
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
+ 
+
+                                                                                                                                                        
                                                                                                                                                          
-                                                                                                                                                         
-                                                                                                                                                         
+                                                                                                                                       
 **Note - Go through each tab for different Relationship to Frequency of Variables**
 #--通过查看每个标签得到变量频率的不同的关系
 ### Relationship to Frequency {.tabset}
 
 #### Pclass {-}
 
-```{r freq_pclass, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_pclass, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Pclass, fill=Survived)) +
   geom_bar(position="stack") +
@@ -730,7 +730,8 @@ ggplot(full %>% filter(set=="train"), aes(Pclass, fill=Survived)) +
 
 #### Sex {-}
 
-```{r freq_sex, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_sex, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Sex, fill=Survived)) +
   geom_bar(position="stack") +
@@ -744,7 +745,8 @@ ggplot(full %>% filter(set=="train"), aes(Sex, fill=Survived)) +
 
 #### Age {-}
 
-```{r freq_age, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_age, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Age, fill=Survived)) +
   geom_histogram(aes(y=..count..), alpha=0.5) +
@@ -759,7 +761,8 @@ ggplot(full %>% filter(set=="train"), aes(Age, fill=Survived)) +
 
 #### Age Groups {-}
 
-```{r freq_age_group, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_age_group, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train" & !is.na(Age)), aes(`Age Group`, fill=Survived)) +
   geom_bar(position="stack") +
@@ -772,7 +775,8 @@ ggplot(full %>% filter(set=="train" & !is.na(Age)), aes(`Age Group`, fill=Surviv
 
 #### SibSp {-}
 
-```{r freq_sibsp, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_sibsp, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(SibSp, fill=Survived)) +
   geom_bar(position="stack") +
@@ -784,9 +788,11 @@ ggplot(full %>% filter(set=="train"), aes(SibSp, fill=Survived)) +
   theme_minimal()
 ```
 
+
 #### Parch {-}
 
-```{r freq_parch, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_parch, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Parch, fill=Survived)) +
   geom_bar(position="stack") +
@@ -799,7 +805,8 @@ ggplot(full %>% filter(set=="train"), aes(Parch, fill=Survived)) +
 
 #### Embarked {-}
 
-```{r freq_embarked, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_embarked, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train"), aes(Embarked, fill=Survived)) +
   geom_bar(position="stack") +
@@ -812,7 +819,8 @@ ggplot(full %>% filter(set=="train"), aes(Embarked, fill=Survived)) +
 
 #### Title {-}
 
-```{r freq_title, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_title, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train") %>% na.omit, aes(title, fill=Survived)) +
   geom_bar(position="stack") +
@@ -822,12 +830,12 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(title, fill=Survived)) +
   ggtitle("Survived by Title") + 
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
 ```
 
 #### Family {-}
 
-```{r freq_family, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```
+{r freq_family, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
 
 ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survived)) +
   geom_bar(position="stack") +
@@ -852,7 +860,8 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survive
 Correlation measures between numeric features suggest redundant information such as *Fare* with *Pclass*. This relationship, however, may be distorted due to passengers who boarded as a family where *Fare* represents the sum of a family's total cost.
 #--数字特征之间的关联方法提示冗余信息，例如* Fare *与* Pclass *。 然而，这种关系可能会由于登上作为家庭的乘客而被扭曲，其中*费用*代表家庭总成本的总和。
 
-```{r corrplot, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4, fig.width=9}
+```
+{r corrplot, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4, fig.width=9}
 
 tbl_corr <- full %>%
   filter(set=="train") %>%
@@ -870,7 +879,8 @@ tbl_corr <- full %>%
 问：什么是 Mosaic Plot
 答：马赛克图（也称为Marimekko图）是一种用于显示来自两个或多个定性变量的数据的图形方法。 这是spplplots的多维扩展，图形显示只有一个变量相同的信息。
 
-```{r mosaicplot, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4, fig.width=9}
+```
+{r mosaicplot, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4, fig.width=9}
 
 tbl_mosaic <- full %>%
   filter(set=="train") %>%
@@ -890,7 +900,8 @@ mosaic(~Pclass+Sex+Survived, data=tbl_mosaic, shade=TRUE, legend=TRUE)
 
 Likelihood to survive was lowest among third class passengers; however, their chances for survival improved when *Sex* was female. Surprisingly, half of toddlers and adolescents perished. A plausible explanation for this could be that many of these children who perished came from larger families as suggested in the conditional inference tree model below.
 #--三等乘客生存的可能性最低; 然而，当* Sex *是女性时，他们的生存机会得到了改善。 令人惊讶的是，一半的幼儿和青少年遇难。 对此的合理解释可能是，这些死亡的孩子中的许多人来自大家庭，正如下面的条件推理树模型所建议的那样。
-```{r alluvial, message=FALSE, warning=FALSE, echo=TRUE, fig.height=6, fig.width=9}
+```
+{r alluvial, message=FALSE, warning=FALSE, echo=TRUE, fig.height=6, fig.width=9}
 library(alluvial)
 
 tbl_summary <- full %>%
@@ -910,6 +921,7 @@ alluvial(tbl_summary[, c(1:4)],
            NULL,
            NULL))
 ```
+
 
 ## Machine learning algorithm                                                                                v
 #--机器学习算法
@@ -949,7 +961,6 @@ The process of learning begins with observations or data, such as examples, dire
 
 
 
- 
 **JAMES**   - Let’s prepare the training data set with "Pclass", "title","Sex","Embarked","FamilySized","ticket.size"
  Variables and splitting our data set into 70% as training dataset and 30 % as testing data set                                                                                
 **MARK**    - What is training and test data set?                                                                                                    
@@ -968,7 +979,6 @@ The process of learning begins with observations or data, such as examples, dire
 ###Prepare and keep data set.
 
 ```{r, message=FALSE, warning=FALSE}
-
 
 
 ###lets prepare and keep data in the proper format
@@ -1079,7 +1089,6 @@ rpart.plot(Model_CDT$finalModel,extra =  3,fallen.leaves = T)
 
 ##Yes, there is no change in the imporatnce of variable
 #--嗯 模型没什么变化
-
 
 
 ###Lets cross validate the accurcay using data that kept aside for testing purpose
