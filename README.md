@@ -1604,6 +1604,75 @@ aaa
 aaa
 </code>
 ```
-t i code adsf yhn
-wo zhen shi 
+score <- data.table()
+result <- data.table()
+
+
+
+for(i in 1:n_folds) {
+  
+  if(submission) {
+    x_train <- data_train %>% select(-PassengerId, -Survived)
+    x_test  <- data_test %>% select(-PassengerId, -Survived)
+    y_train <- data_train$Survived
+    
+  } else {
+    train.ids <- ids[-seq(i, length(ids), by=n_folds)]
+    test.ids  <- ids[seq(i, length(ids), by=n_folds)]
+    
+    x_train <- data_train %>% select(-PassengerId, -Survived)
+    x_train <- x_train[train.ids,]
+    
+    x_test  <- data_train %>% select(-PassengerId, -Survived)
+    x_test  <- x_test[test.ids,]
+    
+    y_train <- data_train$Survived[train.ids]
+    y_test  <- data_train$Survived[test.ids]
+  }
+  
+  x_train <- apply(x_train, 2, as.numeric)
+  x_test <- apply(x_test, 2, as.numeric)
+  
+  if(submission) {
+    nrounds <- 12
+    early_stopping_round <- NULL
+    dtrain <- xgb.DMatrix(data=as.matrix(x_train), label=y_train)
+    dtest <- xgb.DMatrix(data=as.matrix(x_test))
+    watchlist <- list(train=dtrain)
+  } else {
+    nrounds <- 3000
+    early_stopping_round <- 100
+    dtrain <- xgb.DMatrix(data=as.matrix(x_train), label=y_train)
+    dtest <- xgb.DMatrix(data=as.matrix(x_test), label=y_test)
+    watchlist <- list(train=dtrain, test=dtest)
+  }
+  
+  params <- list("eta"=0.01,
+                 "max_depth"=8,
+                 "colsample_bytree"=0.3528,
+                 "min_child_weight"=1,
+                 "subsample"=1,
+                 "objective"="reg:logistic",
+                 "eval_metric"="auc")
+  
+  model_xgb <- xgb.train(params=params,
+                         data=dtrain,
+                         maximize=TRUE,
+                         nrounds=nrounds,
+                         watchlist=watchlist,
+                         early_stopping_round=early_stopping_round,
+                         print_every_n=2)
+  
+  pred <- predict(model_xgb, dtest)
+  
+  if(submission) {
+    result <- cbind(data_test %>% select(PassengerId), Survived=round(pred, 0))
+  } else {
+    score <- rbind(score, 
+                   data.frame(accuracy=Accuracy(round(pred, 0), y_test), best_iteration=model_xgb$best_iteration))
+    temp   <- cbind(data_train[test.ids,], pred=pred)
+    result <- rbind(result, temp)
+  }
+}
+
 ```
