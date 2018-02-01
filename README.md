@@ -1603,7 +1603,7 @@ Accuracy with **Logistic Regression**            - 81.36%
 aaa
 aaa
 </code>
-```
+```{r, message=FALSE, warning=FALSE}
 score <- data.table()
 result <- data.table()
 
