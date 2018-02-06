@@ -16,6 +16,71 @@ output:
 ##二级标题<br>
 ###三级标题<br>
 ##########几级标题<br>
+	hello
+	erery
+one
+<br>
+hello `every one` hello
+a b c d `abcd`
+
+[mybolog](www.gnaixgnahz.com "悬停显示")
+
+
+*这是个圆点
+*这也是个原点
+
+缩进
+<br>
+>数据结构  
+>>树  
+>>>二叉树  
+>>>>平衡二叉树  
+>>>>>满二叉树 
+
+
+
+···R
+knitr::opts_chunk$set(echo=TRUE)
+
+# data wrangling  数据处理包
+library(tidyverse)
+library(forcats)
+library(stringr)
+library(caTools)
+
+# data assessment/visualizations  数据可视化包
+library(DT)
+library(data.table)
+library(pander)
+library(ggplot2)
+library(scales)
+library(grid)
+library(gridExtra)
+library(corrplot)
+library(VIM) 
+library(knitr)
+library(vcd)
+library(caret)
+
+# model  模型包
+library(xgboost)
+library(MLmetrics)
+library('randomForest') 
+library('rpart')
+library('rpart.plot')
+library('car')
+library('e1071')
+library(vcd)
+library(ROCR)
+library(pROC)
+library(VIM)
+library(glmnet) 
+···
+
+
+
+
+
 
 
 ```
