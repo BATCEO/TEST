@@ -30,17 +30,17 @@ knitr::opts_chunk$set(echo=TRUE)
 #### 第二阶段  学习生态系统（类似于一个圈子，姑且就叫数据圈吧）
 发现机器学习的生态系统  
 数据科学是一个充分利用开源平台的领域。 虽然数据分析可以用多种语言进行，但使用正确的工具可以制定或中断项目。  
-数据科学图书馆在Python和R生态系统中蓬勃发展。 在这个网址查看 用Python还是R进行数据分析。[网址]（https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis "悬停显示"） 
-无论您选择哪种语言，Jupyter Notebook和RStudio都让我们的生活变得更加轻松。 它们允许我们在操纵数据的同时可视化数据。 按照这个[链接]（http://blog.kaggle.com/2015/12/07/three-things-i-love-about-jupyter-notebooks/ "悬停显示"）阅读更多关于Jupyter Notebook的功能。  
+数据科学图书馆在Python和R生态系统中蓬勃发展。 在这个网址查看 用Python还是R进行数据分析。[网址](https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis "悬停显示")  
+无论您选择哪种语言，Jupyter Notebook和RStudio都让我们的生活变得更加轻松。 它们允许我们在操纵数据的同时可视化数据。 按照这个[链接](http://blog.kaggle.com/2015/12/07/three-things-i-love-about-jupyter-notebooks/ "悬停显示")阅读更多关于Jupyter Notebook的功能。  
 Kaggle，Analytics Vidhya，MachineLearningMastery和KDNuggets是一些活跃的社区，世界各地的数据科学家在这里丰富彼此的学习。  
-机器学习已经通过在线课程或者Coursera，EdX等的MOOC进行民主化，在这里我们向世界一流大学的杰出教授学习。 这里有一个有关于现在可用的数据科学列表[顶级MOOC列表]（https://medium.freecodecamp.org/i-ranked-all-the-best-data-science-intro-courses-based-on-thousands-of-data-points- db5dc7e3eb8e "悬停显示"）。  
+机器学习已经通过在线课程或者Coursera，EdX等的MOOC进行民主化，在这里我们向世界一流大学的杰出教授学习。 这里有一个有关于现在可用的数据科学列表[顶级MOOC列表](https://medium.freecodecamp.org/i-ranked-all-the-best-data-science-intro-courses-based-on-thousands-of-data-points- db5dc7e3eb8e)。  
 
 
 #### 第三阶段  巩固基础
 学习操纵数据  
 根据访谈和专家估计，数据科学家将50％到80％的时间用于收集和准备不规则数字数据的世俗工作，然后才能探索有用的金块。 - 纽约时报的史蒂夫·洛尔  
 数据科学不仅仅是建立机器学习模型。 这也是解释模型并用它们来推动数据驱动的决策。 在从分析到数据驱动的结果的过程中，数据可视化以强有力和可信的方式呈现数据，扮演着非常重要的角色。  
-Python中的[Matplotlib]（https://matplotlib.org/ "悬停显示"）库或R中的[ggplot]（http://ggplot2.org/ "悬停显示"）提供了完整的2D图形支持，具有非常高的灵活性，可以创建高质量的数据可视化。   
+Python中的[Matplotlib](https://matplotlib.org/)库或R中的[ggplot](http://ggplot2.org/)提供了完整的2D图形支持，具有非常高的灵活性，可以创建高质量的数据可视化。   
 有一些图书馆您将花费大部分时间在上面当您在进行分析时。  
 
 
@@ -51,7 +51,7 @@ Python中的Scikit-learn库或R中的caret, e1071库通过一致的接口提供�
 这些让你实现一个算法，而不用担心内部工作或细节的细节。  
 将这些机器学习算法应用到您身边的用例中。这可能是在你的工作，或者你可以在Kaggle比赛中练习。 其中，全世界的数据科学家都在竞相建立模型来解决问题。
 同时了解一种算法的内部运作情况。 从机器学习的“Hello World！”开始，线性回归然后转到Logistic回归，决策树到支持向量机。 这将需要你刷新你的统计和线性代数。  
-Coursera创始人Andrew Ng是AI的先驱，开发了一个[机器学习课程]（https://www.coursera.org/learn/machine-learning "悬停显示"），为您理解机器学习算法的内部工作提供了一个很好的起点。  
+Coursera创始人Andrew Ng是AI的先驱，开发了一个[机器学习课程](https://www.coursera.org/learn/machine-learning)，为您理解机器学习算法的内部工作提供了一个很好的起点。  
 
 
 #### 第五阶段  学习高级技能
@@ -63,53 +63,51 @@ Coursera创始人Andrew Ng是AI的先驱，开发了一个[机器学习课程]�
 
 
  
-我在Kaggle看到许多新的学习者，想为他们创造一个kernal，让他们有一个良好的开端。
-这个针对基础学习者的kernal，是试图快速理解数据科学，我选择了定期的对话方式。
-在kernal中，我们将遇到两个字符“MARK”和“JAMES”，其中MARK是Data Science（Laymen）的新成员，JAMES使他理解概念
-为了容易的开始 我选择了泰坦尼克号的数据集
+我在Kaggle看到许多新的学习者，想为他们创造一个kernal，让他们有一个良好的开端。  
+这个针对基础学习者的kernal，是试图快速理解数据科学，我选择了定期的对话方式。  
+在kernal中，我们将遇到两个字符“MARK”和“JAMES”，其中MARK是Data Science（Laymen）的新成员，JAMES使他理解概念  
+为了容易的开始 我选择了泰坦尼克号的数据集  
 
 
-#--数据集简介
-On 14 April 1912, the [RMS Titanic](https://en.wikipedia.org/wiki/RMS_Titanic) struck a large iceberg and took approximately 1,500 of its passengers and crew below the icy depths of the Atlantic Ocean. Considered one of the worst peacetime disasters at sea, this tragic event led to the creation of numerous [safety regulations and policies](http://www.gc.noaa.gov/gcil_titanic-history.html) to prevent such a catastrophe from happening again. Some critics, however, argue that circumstances other than luck resulted in a disproportionate number of deaths. The purpose of this analysis is to explore factors that influenced a person’s likelihood to survive.
-#--上面的英文大概就是讲了一下泰坦尼克号的故事吧~
+###### 数据集简介
+On 14 April 1912, the [RMS Titanic](https://en.wikipedia.org/wiki/RMS_Titanic) struck a large iceberg and took approximately 1,500 of its passengers and crew below the icy depths of the Atlantic Ocean. Considered one of the worst peacetime disasters at sea, this tragic event led to the creation of numerous [safety regulations and policies](http://www.gc.noaa.gov/gcil_titanic-history.html) to prevent such a catastrophe from happening again. Some critics, however, argue that circumstances other than luck resulted in a disproportionate number of deaths. The purpose of this analysis is to explore factors that influenced a person’s likelihood to survive.  
+上面的英文大概就是讲了一下泰坦尼克号的故事吧~  
 
 
-#--选择软件 R
+###### 选择软件 R
 The following analysis was conducted in the [R software environment for statistical computing](https://www.r-project.org/).
 
 
-#---下面的讲解主要以对话的形式进行
-问：今天学啥？
-答：数据科学基础
+###### 下面的讲解主要以对话的形式进行  
+问：今天学啥？  
+答：数据科学基础  
  
-问：啥是数据科学？
-答：数据科学是数据推理，算法开发和技术的多学科融合，用来解决分析复杂的问题。
+问：啥是数据科学？  
+答：数据科学是数据推理，算法开发和技术的多学科融合，用来解决分析复杂的问题。  
                       
-问： 数据科学家如何进行数据挖掘
-答： 用这些开始
-	 1.收集--解决问题所需的原始数据。
-	 2.加工--数据缠绕
-	 3.探索--数据可视化
-	 4.展示--深入分析（机器学习，统计模型，算法）
-	 5.交流--分析的结果
+问： 数据科学家如何进行数据挖掘  
+答： 用这些开始  
+	 1. 收集--解决问题所需的原始数据。
+	 2. 加工--数据缠绕
+	 3. 探索--数据可视化
+	 4. 展示--深入分析（机器学习，统计模型，算法）
+	 5. 交流--分析的结果
 
-问：能不能详写解释一下
-答：不能
+问：能不能详写解释一下  
+答：不能  
 
 
-#--导入数据集                                     
-问：怎么把数据集插入到Rstudio
-答：自己百度
+###### 导入数据集                                     
+问：怎么把数据集插入到Rstudio  
+答：自己百度  
 
-问：万一调用库失败咋办
-答：自己查
+问：万一调用库失败咋办  
+答：自己查  
 
-问：我要开始了好激动
-答：赶紧的吧 真墨迹
+问：我要开始了好激动  
+答：赶紧的吧 真墨迹  
 
-```
-{r dependencies, message = FALSE, warning = FALSE}
-
+```r
 # data wrangling  数据处理包
 library(tidyverse)
 library(forcats)
@@ -145,8 +143,8 @@ library(VIM)
 library(glmnet) 
 ```
 
-问：现在可以导入数据集了吧
-答：嗯 
+问：现在可以导入数据集了吧  
+答：嗯   
 
 ```
 {r, message=FALSE, warning=FALSE, results='hide'}
