@@ -39,7 +39,7 @@ a b c d `abcd`
 
 
 
-···R
+···r
 knitr::opts_chunk$set(echo=TRUE)
 
 # data wrangling  数据处理包
@@ -79,7 +79,33 @@ library(glmnet)
 
 
 
+```r
+checkAllCols = function(df){
+  resDF = data.frame()
+  for (colName in names(df)){
+    resDF = rbind(resDF,as.data.frame(checkColumn(df=df,colname=colName)))
+  }
+  resDF
+}
 
+#属性列表可视化
+```
+{r , message=FALSE, warning=FALSE, results='hide'}
+library(DT)
+library(data.table)
+library(pander)
+library(ggplot2)
+library(scales)
+library(grid)
+library(gridExtra)
+library(corrplot)
+library(VIM) 
+library(knitr)
+library(vcd)
+library(caret)
+datatable(checkAllCols(full), style="bootstrap", class="table-condensed", options = list(dom = 'tp',scrollX = TRUE))
+
+```
 
 
 
