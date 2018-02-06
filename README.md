@@ -9,6 +9,7 @@ output:
     code_folding: show
 ---
 
+
 ```
 {r setup, include=FALSE, echo=FALSE}
 #--显示R代码  knitr包的opts_chunk$set()函数可以配置 隐藏或者显示代码 
@@ -66,8 +67,6 @@ knitr::opts_chunk$set(echo=TRUE)
 #--我在Kaggle看到许多新的学习者，想为他们创造一个kernal，让他们有一个良好的开端。
 #--这个针对基础学习者的kernal，是试图快速理解数据科学，我选择了定期的对话方式。
 #--在kernal中，我们将遇到两个字符“MARK”和“JAMES”，其中MARK是Data Science（Laymen）的新成员，JAMES使他理解概念
- 
-
 #为了容易的开始 我选择了泰坦尼克号的数据集
 
 
@@ -76,21 +75,17 @@ On 14 April 1912, the [RMS Titanic](https://en.wikipedia.org/wiki/RMS_Titanic) s
 #--上面的英文大概就是讲了一下泰坦尼克号的故事吧~
 
 
-
-#--软件
+#--选择软件 R
 The following analysis was conducted in the [R software environment for statistical computing](https://www.r-project.org/).
 
 
 #---下面的讲解主要以对话的形式进行
-
 问：今天学啥？
 答：数据科学基础
  
-
 问：啥是数据科学？
 答：数据科学是数据推理，算法开发和技术的多学科融合，用来解决分析复杂的问题。
-
-                                
+                      
 问： 数据科学家如何进行数据挖掘
 答： 用这些开始
 	 1.收集--解决问题所需的原始数据。
@@ -99,20 +94,16 @@ The following analysis was conducted in the [R software environment for statisti
 	 4.展示--深入分析（机器学习，统计模型，算法）
 	 5.交流--分析的结果
 
-
 问：能不能详写解释一下
 答：不能
 
 
-#--导入数据集
-                                         
+#--导入数据集                                     
 问：怎么把数据集插入到Rstudio
 答：自己百度
 
-
 问：万一调用库失败咋办
 答：自己查
-
 
 问：我要开始了好激动
 答：赶紧的吧 真墨迹
@@ -155,7 +146,6 @@ library(VIM)
 library(glmnet) 
 ```
 
-
 问：现在可以导入数据集了吧
 答：嗯 
 
@@ -183,28 +173,22 @@ full <- rbind(train, test)
 
 问：我们已经处理了用于解决问题的原始数据
 答：嗯 接着处理
-
                                      
 问：为什么我们需要处理数据（数据缠绕）
-答：你收集的数据目前仍是原始数据，
-这很可能包含错误，缺失和腐败的价值。
+答：你收集的数据目前仍是原始数据，这很可能包含错误，缺失和腐败的价值。
 在您从数据中得出任何结论之前，您需要对其进行一些数据处理，
 这是我们下一节的主题。我们选择我们想要操作的数据
-
-                                                                         
-
+                                                                        
 问：在数据科学下进行了哪些操作？
 答：这是所有的观点
 	这个给了一些清晰的观点 自己看图
 <center><img src="https://doubleclix.files.wordpress.com/2012/12/data-science-02.jpg"></center>
 <center><img src="https://cdn-images-1.medium.com/max/1600/1*2T5rbjOBGVFdSvtlhCqlNg.png"></center>
-
-                                                                           
+                                                                          
 问：这看起来不错，把工具和语言都显示出来了
 答：在这里我们将使用R语言做处理                                                                                  
 
                                                                                                                          
-
 #--在此之前，我们需要一个数据检擦 - 探索性分析（EDA）
 1.检查数据集的疏散
 2.数据集的维度
@@ -237,7 +221,7 @@ missing_values %>%
   geom_bar(stat="identity",fill="red")+     #geom_bar 画条形图
   coord_flip()+theme_bw()    #coord_flip()  旋转横纵坐标  横坐标变为纵坐标 纵变横   theme_bw() 添加一个坐标的主题样式
 
-1.png
+<img src="/img/1.png"></img>
 
 #对缺失值有用的数据质量函数
 #检查 一个数据集df的某一列colname的类型  返回列的属性列表(列名，类型，总个数，缺失值个数，numInfinite，平均值，最小值，最大值)
@@ -280,8 +264,8 @@ library(vcd)
 library(caret)
 datatable(checkAllCols(full), style="bootstrap", class="table-condensed", options = list(dom = 'tp',scrollX = TRUE))
 
+<img src="/img/1-1.png"></img>
 
-1-1.png
 #map_dbl返回一个与输入长度相同的向量。
 #round(x, n) x的约数 精确到n位
 miss_pct <- map_dbl(full, function(x) { round((sum(is.na(x)) / length(x)) * 100, 1) })  #缺失值比率
@@ -292,9 +276,9 @@ data.frame(miss=miss_pct, var=names(miss_pct), row.names=NULL) %>%
     geom_bar(stat='identity', fill='red') +
     labs(x='', y='% missing', title='Percent missing data by feature') +
     theme(axis.text.x=element_text(angle=90, hjust=1))
-
+<img src="/img/2.png"></img>
 ```
-2.png
+
 
 ## Feature engineering.
 问：什么是feature engineering
@@ -304,12 +288,10 @@ data.frame(miss=miss_pct, var=names(miss_pct), row.names=NULL) %>%
 #--数据操作                                                                                  
 问：我们已经了解了我们的数据集吧
 答：然后我们还需要做一些数据的处理
-
-                                     
+                                    
 问：怎么进行数据处理
 答：数据操作是一个改变数据的过程，为了使其更容易阅读并且更有组织性
                                                                                   
-
 #--下面的部分着重于准备数据，以便用于学习训练，比如探索性数据分析和建模拟合。
 
 ### 处理Age字段
@@ -485,9 +467,11 @@ ggplot(full %>% filter(set=="train"), aes(Pclass, fill=Survived)) +
   geom_hline(yintercept=crude_survrate, col="white", lty=2, size=2) +
   ggtitle("Survival Rate by Class") + 
   theme_minimal()
+  
+<img src="/img/3.png"></img>
 
 ```
-3.png
+
 
 #### Sex {-}
 
@@ -502,9 +486,9 @@ ggplot(full %>% filter(set=="train"), aes(Sex, fill=Survived)) +
   geom_hline(yintercept=crude_survrate, col="white", lty=2, size=2) +
   ggtitle("Survival Rate by Sex") + 
   theme_minimal()
-
+<img src="/img/4.png"></img>
 ```
-4.png
+
 
 #### Age {-}
 
@@ -527,9 +511,8 @@ ggplot(full %>% filter(set=="train"), aes(Age, fill=Survived)) +
   ylab("Density") +
   ggtitle("Survival Rate by Age") + 
   theme_minimal()
-
+<img src="/img/5.png"></img>
 ```
-5.png
 
 #### Age Groups {-}
 
@@ -544,9 +527,9 @@ ggplot(full %>% filter(set=="train" & !is.na(Age)), aes(`Age Group`, fill=Surviv
   geom_hline(yintercept=crude_survrate, col="white", lty=2, size=2) +
   ggtitle("Survival Rate by Age Group") + 
   theme_minimal()
-
+<img src="/img/6.png"></img>
 ```
-6.png
+
 #### SibSp {-}
 
 ```
@@ -560,9 +543,9 @@ ggplot(full %>% filter(set=="train"), aes(SibSp, fill=Survived)) +
   geom_hline(yintercept=crude_survrate, col="white", lty=2, size=2) +
   ggtitle("Survival Rate by SibSp") + 
   theme_minimal()
-
+<img src="/img/7.png"></img>
 ```
-7.png
+
 #### Parch {-}
 
 ```
@@ -576,9 +559,9 @@ ggplot(full %>% filter(set=="train"), aes(Parch, fill=Survived)) +
   geom_hline(yintercept=crude_survrate, col="white", lty=2, size=2) +
   ggtitle("Survival Rate by Parch") + 
   theme_minimal()
-
+<img src="/img/8.png"></img>
 ```
-8.png
+
 #### Embarked {-}
 
 ```
@@ -592,9 +575,9 @@ ggplot(full %>% filter(set=="train"), aes(Embarked, fill=Survived)) +
   geom_hline(yintercept=crude_survrate, col="white", lty=2, size=2) +
   ggtitle("Survival Rate by Embarked") + 
   theme_minimal()
-
+<img src="/img/9.png"></img>
 ```
-9.png
+
 #### Title {-}
 
 ```
@@ -609,9 +592,9 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(title, fill=Survived)) +
   ggtitle("Survival Rate by Title") + 
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
+<img src="/img/10.png"></img>
 ```
-10.png
+
 #### Family {-}
 
 ```
@@ -626,9 +609,9 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survive
   ggtitle("Survival Rate by Family Group") + 
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
+<img src="/img/11.png"></img>
 ```
- 11.png
+
 
                                                                                                                                                         
                                                                                                                                                          
@@ -647,8 +630,9 @@ ggplot(full %>% filter(set=="train"), aes(Pclass, fill=Survived)) +
   ylab("Passengers") +
   ggtitle("Survived by Class") + 
   theme_minimal()
+  <img src="/img/12.png"></img>
 ```
-12.png
+
 
 #### Sex {-}
 
@@ -663,9 +647,9 @@ ggplot(full %>% filter(set=="train"), aes(Sex, fill=Survived)) +
   ylab("Passengers") +
   ggtitle("Survived by Sex") + 
   theme_minimal()
-
+<img src="/img/13.png"></img>
 ```
-13.png
+
 #### Age {-}
 
 ```
@@ -680,9 +664,9 @@ ggplot(full %>% filter(set=="train"), aes(Age, fill=Survived)) +
   ylab("Density") +
   ggtitle("Survived by Age") + 
   theme_minimal()
-
+<img src="/img/14.png"></img>
 ```
-14.png
+
 #### Age Groups {-}
 
 ```
@@ -695,9 +679,9 @@ ggplot(full %>% filter(set=="train" & !is.na(Age)), aes(`Age Group`, fill=Surviv
   ylab("Passengers") +
   ggtitle("Survived by Age Group") + 
   theme_minimal()
-
+<img src="/img/15.png"></img>
 ```
-15.png
+
 #### SibSp {-}
 
 ```
@@ -711,9 +695,9 @@ ggplot(full %>% filter(set=="train"), aes(SibSp, fill=Survived)) +
   ylab("Passengers") +
   ggtitle("Survived by SibSp") + 
   theme_minimal()
-
+<img src="/img/16.png"></img>
 ```
-16.png
+
 
 #### Parch {-}
 
@@ -727,9 +711,9 @@ ggplot(full %>% filter(set=="train"), aes(Parch, fill=Survived)) +
   ylab("Passengers") +
   ggtitle("Survived by Parch") + 
   theme_minimal()
-
+<img src="/img/17.png"></img>
 ```
-17.png
+
 #### Embarked {-}
 
 ```
@@ -742,9 +726,9 @@ ggplot(full %>% filter(set=="train"), aes(Embarked, fill=Survived)) +
   ylab("Passengers") +
   ggtitle("Survived by Embarked") + 
   theme_minimal()
-
+<img src="/img/18.png"></img>
 ```
-18.png
+
 #### Title {-}
 
 ```
@@ -758,9 +742,9 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(title, fill=Survived)) +
   ggtitle("Survived by Title") + 
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
+<img src="/img/19.png"></img>
 ```
-19.png
+
 #### Family {-}
 
 ```
@@ -774,9 +758,8 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survive
   ggtitle("Survived by Family Group") + 
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
+<img src="/img/20.png"></img>
 ```
-20.png
 
 #--变量之间的交互关系
 
@@ -795,9 +778,9 @@ tbl_corr <- full %>%
   select_if(is.numeric) %>%
   cor(use="complete.obs") %>%
   corrplot.mixed(tl.cex=0.85)
-
+<img src="/img/21.png"></img>
 ```
-21.png
+
 
 #--马赛克图
 问：什么是 Mosaic Plot
@@ -812,9 +795,9 @@ tbl_mosaic <- full %>%
   mutate_all(as.factor)
 
 mosaic(~Pclass+Sex+Survived, data=tbl_mosaic, shade=TRUE, legend=TRUE)
-
+<img src="/img/22.png"></img>
 ```
-22.png
+
 
 #--冲积图
 问：什么是Alluvial Diagram冲积图
@@ -840,9 +823,9 @@ alluvial(tbl_summary[, c(1:4)],
            order(tbl_summary$Sex, tbl_summary$Pclass==1),
            NULL,
            NULL))
-
+<img src="/img/23.png"></img>
 ```
-23.png
+
 
 
 #--机器学习算法
@@ -928,7 +911,7 @@ Model_DT=rpart(Survived~.,data=train_val,method="class")#构建决策树模型
 library("rpart.plot")
 rpart.plot(Model_DT,extra =  3,fallen.leaves = T)
 
-24.png
+<img src="/img/24.png"></img>
 
 #--哇塞，检查一下画出的图形，我们单一的树模型只使用到了Title, Pclass and Ticket.size这些字段
 #--让我们预测训练数据，并检查单个树的准确性
@@ -962,7 +945,7 @@ Model_CDT <- train(x = train_val[,-7], y = train_val[,7], method = "rpart", tune
 #--貌似过度拟合了，之前我们的准确率是0.83
 rpart.plot(Model_CDT$finalModel,extra =  3,fallen.leaves = T)
 
-25.png
+<img src="/img/25.png"></img>
 #--嗯 模型没什么变化
 
 
@@ -990,7 +973,7 @@ rf.1 <- randomForest(x = train_val[,-7],y=train_val[,7], importance = TRUE, ntre
 rf.1
 varImpPlot(rf.1)  #随机森林测量的可变重要性的点图
 
-26.png
+<img src="/img/26.png"></img>
 
 
 #--随机森林的准确率是82.91 比决策树提高了1%
@@ -1004,7 +987,7 @@ rf.2 <- randomForest(x = train_val1[,-5],y=train_val1[,5], importance = TRUE, nt
 rf.2
 varImpPlot(rf.2)
 
-27.png
+<img src="/img/27.png"></img>
 
 #--你能看到变化吗  仅仅移除了两个变量  准确率就提高到了84.04
 #--即使随机森林如此强大，我们也是在交叉验证之后才接受的这个模型
@@ -1112,7 +1095,7 @@ par(mfrow=c(1,2))
 plot(cvfit.m.ridge, main = "Ridge")
 plot(cvfit.m.lasso, main = "Lasso")
 
-29.png
+<img src="/img/29.png"></img>
 coef(cvfit.m.ridge, s = "lambda.min")
 
 # Prediction on training set
@@ -1148,7 +1131,7 @@ par(mfrow=c(1,2))
 plot(cvfit.f.ridge, main = "Ridge")
 plot(cvfit.f.lasso, main = "Lasso")
 
-30.png
+<img src="/img/30.png"></img>
 coef(cvfit.f.ridge, s = "lambda.min")
 
 # Ridge Model
