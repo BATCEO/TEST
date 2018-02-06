@@ -30,31 +30,31 @@ knitr::opts_chunk$set(echo=TRUE)
 #### 第二阶段  学习生态系统（类似于一个圈子，姑且就叫数据圈吧）
 发现机器学习的生态系统  
 数据科学是一个充分利用开源平台的领域。 虽然数据分析可以用多种语言进行，但使用正确的工具可以制定或中断项目。  
-数据科学图书馆在Python和R生态系统中蓬勃发展。 在这个网址查看 用Python还是R进行数据分析。（https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis）  
-无论您选择哪种语言，Jupyter Notebook和RStudio都让我们的生活变得更加轻松。 它们允许我们在操纵数据的同时可视化数据。 按照这个[链接]（http://blog.kaggle.com/2015/12/07/three-things-i-love-about-jupyter-notebooks/）阅读更多关于Jupyter Notebook的功能。  
+数据科学图书馆在Python和R生态系统中蓬勃发展。 在这个网址查看 用Python还是R进行数据分析。[网址]（https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis "悬停显示"） 
+无论您选择哪种语言，Jupyter Notebook和RStudio都让我们的生活变得更加轻松。 它们允许我们在操纵数据的同时可视化数据。 按照这个[链接]（http://blog.kaggle.com/2015/12/07/three-things-i-love-about-jupyter-notebooks/ "悬停显示"）阅读更多关于Jupyter Notebook的功能。  
 Kaggle，Analytics Vidhya，MachineLearningMastery和KDNuggets是一些活跃的社区，世界各地的数据科学家在这里丰富彼此的学习。  
-机器学习已经通过在线课程或者Coursera，EdX等的MOOC进行民主化，在这里我们向世界一流大学的杰出教授学习。 这里有一个有关于现在可用的数据科学列表[顶级MOOC列表]（https://medium.freecodecamp.org/i-ranked-all-the-best-data-science-intro-courses-based-on-thousands-of-data-points- db5dc7e3eb8e）。  
+机器学习已经通过在线课程或者Coursera，EdX等的MOOC进行民主化，在这里我们向世界一流大学的杰出教授学习。 这里有一个有关于现在可用的数据科学列表[顶级MOOC列表]（https://medium.freecodecamp.org/i-ranked-all-the-best-data-science-intro-courses-based-on-thousands-of-data-points- db5dc7e3eb8e "悬停显示"）。  
 
 
 #### 第三阶段  巩固基础
 学习操纵数据  
 根据访谈和专家估计，数据科学家将50％到80％的时间用于收集和准备不规则数字数据的世俗工作，然后才能探索有用的金块。 - 纽约时报的史蒂夫·洛尔  
 数据科学不仅仅是建立机器学习模型。 这也是解释模型并用它们来推动数据驱动的决策。 在从分析到数据驱动的结果的过程中，数据可视化以强有力和可信的方式呈现数据，扮演着非常重要的角色。  
-Python中的[Matplotlib]（https://matplotlib.org/）库或R中的[ggplot]（http://ggplot2.org/）提供了完整的2D图形支持，具有非常高的灵活性，可以创建高质量的数据可视化。   
+Python中的[Matplotlib]（https://matplotlib.org/ "悬停显示"）库或R中的[ggplot]（http://ggplot2.org/ "悬停显示"）提供了完整的2D图形支持，具有非常高的灵活性，可以创建高质量的数据可视化。   
 有一些图书馆您将花费大部分时间在上面当您在进行分析时。  
 
 
-### 第四阶段  日复一日的练习
+#### 第四阶段  日复一日的练习
 学习机器学习算法并且每天练习  
 有了基础之后，你可以实现机器学习算法来预测和做一些很酷的东西  
 Python中的Scikit-learn库或R中的caret, e1071库通过一致的接口提供一系列有监督和无监督的学习算法。  
 这些让你实现一个算法，而不用担心内部工作或细节的细节。  
 将这些机器学习算法应用到您身边的用例中。这可能是在你的工作，或者你可以在Kaggle比赛中练习。 其中，全世界的数据科学家都在竞相建立模型来解决问题。
 同时了解一种算法的内部运作情况。 从机器学习的“Hello World！”开始，线性回归然后转到Logistic回归，决策树到支持向量机。 这将需要你刷新你的统计和线性代数。  
-Coursera创始人Andrew Ng是AI的先驱，开发了一个[机器学习课程]（https://www.coursera.org/learn/machine-learning），为您理解机器学习算法的内部工作提供了一个很好的起点。  
+Coursera创始人Andrew Ng是AI的先驱，开发了一个[机器学习课程]（https://www.coursera.org/learn/machine-learning "悬停显示"），为您理解机器学习算法的内部工作提供了一个很好的起点。  
 
 
-### 第五阶段  学习高级技能
+#### 第五阶段  学习高级技能
 了解复杂的机器学习算法和深度学习架构  
 虽然机器学习作为一个领域早已建立起来，但最近的炒作和媒体关注主要是由于机器学习在计算机视觉，语音识别，语言处理等AI领域的应用。 其中许多是由Google，Facebook，微软等科技巨头开创的。  
 这些最新的进展可以归功于廉价计算的进步，大规模数据的可用性以及深度学习架构的发展。  
