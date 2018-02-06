@@ -39,7 +39,7 @@ a b c d `abcd`
 
 
 
-···r
+```r
 knitr::opts_chunk$set(echo=TRUE)
 
 # data wrangling  数据处理包
@@ -75,8 +75,7 @@ library(ROCR)
 library(pROC)
 library(VIM)
 library(glmnet) 
-···
-
+```
 
 
 ```r
