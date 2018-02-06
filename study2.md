@@ -16,24 +16,24 @@ knitr::opts_chunk$set(echo=TRUE)
 ```
 
 
-####早期，当我是一个机器学习的新手<br>
-####我曾经不知所措，比如选择语言进行编码，选择正确的在线课程，或选择正确的算法。<br>
-####所以，我打算让人们更容易进入机器学习。<br>
-####我会假设我们中的很多人都是从机器学习的旅程开始的。 让我们来看看当前的专业人员如何达到目标，以及如何模仿他们。<br>
+###### 早期，当我是一个机器学习的新手<br>
+###### 我曾经不知所措，比如选择语言进行编码，选择正确的在线课程，或选择正确的算法。<br>
+###### 所以，我打算让人们更容易进入机器学习。<br>
+###### 我会假设我们中的很多人都是从机器学习的旅程开始的。 让我们来看看当前的专业人员如何达到目标，以及如何模仿他们。<br>
 
 
-####第一阶段  保证独立完成<br>
-####对于刚开始使用机器学习的人来说，把自己和学习，教授和练习机器学习的人们联系在一起非常重要。
-####独自学习是不容易的。 所以，保证要自己去学习机器学习，可以找到数据科学论坛社区来帮助你减少困难。
+###### 第一阶段  保证独立完成<br>
+###### 对于刚开始使用机器学习的人来说，把自己和学习，教授和练习机器学习的人们联系在一起非常重要。
+###### 独自学习是不容易的。 所以，保证要自己去学习机器学习，可以找到数据科学论坛社区来帮助你减少困难。
 
 
-####第二阶段  学习生态系统
-####发现机器学习的生态系统
-####数据科学是一个充分利用开源平台的领域。 虽然数据分析可以用多种语言进行，但使用正确的工具可以制定或中断项目。
-####数据科学图书馆在Python和R生态系统中蓬勃发展。 在这个网址查看 用Python还是R进行数据分析。（https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis）
-####无论您选择哪种语言，Jupyter Notebook和RStudio都让我们的生活变得更加轻松。 它们允许我们在操纵数据的同时可视化数据。 按照这个[链接]阅读更多关于Jupyter Notebook的功能。（http://blog.kaggle.com/2015/12/07/three-things-i-love-about-jupyter-notebooks/）
-####Kaggle，Analytics Vidhya，MachineLearningMastery和KDNuggets是一些活跃的社区，世界各地的数据科学家在这里丰富彼此的学习。
-####机器学习已经通过在线课程或者Coursera，EdX等的MOOC进行民主化，在这里我们向世界一流大学的杰出教授学习。 这里有一个[顶级MOOC列表]有关于现在可用的数据科学列表（https://medium.freecodecamp.org/i-ranked-all-the-best-data-science-intro-courses-based-on-thousands-of-data-points- db5dc7e3eb8e）。
+###### 第二阶段  学习生态系统
+###### 发现机器学习的生态系统
+###### 数据科学是一个充分利用开源平台的领域。 虽然数据分析可以用多种语言进行，但使用正确的工具可以制定或中断项目。
+###### 数据科学图书馆在Python和R生态系统中蓬勃发展。 在这个网址查看 用Python还是R进行数据分析。[网址]（https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis）
+###### 无论您选择哪种语言，Jupyter Notebook和RStudio都让我们的生活变得更加轻松。 它们允许我们在操纵数据的同时可视化数据。 按照这个[链接]阅读更多关于Jupyter Notebook的功能。（http://blog.kaggle.com/2015/12/07/three-things-i-love-about-jupyter-notebooks/）
+###### Kaggle，Analytics Vidhya，MachineLearningMastery和KDNuggets是一些活跃的社区，世界各地的数据科学家在这里丰富彼此的学习。
+###### 机器学习已经通过在线课程或者Coursera，EdX等的MOOC进行民主化，在这里我们向世界一流大学的杰出教授学习。 这里有一个[顶级MOOC列表]有关于现在可用的数据科学列表（https://medium.freecodecamp.org/i-ranked-all-the-best-data-science-intro-courses-based-on-thousands-of-data-points- db5dc7e3eb8e）。
 
 
 #--第三阶段  巩固基础
