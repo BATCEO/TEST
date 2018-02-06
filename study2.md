@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo=TRUE)
 数据科学图书馆在Python和R生态系统中蓬勃发展。 在这个网址查看 用Python还是R进行数据分析。[网址](https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis "悬停显示")  
 无论您选择哪种语言，Jupyter Notebook和RStudio都让我们的生活变得更加轻松。 它们允许我们在操纵数据的同时可视化数据。 按照这个[链接](http://blog.kaggle.com/2015/12/07/three-things-i-love-about-jupyter-notebooks/ "悬停显示")阅读更多关于Jupyter Notebook的功能。  
 Kaggle，Analytics Vidhya，MachineLearningMastery和KDNuggets是一些活跃的社区，世界各地的数据科学家在这里丰富彼此的学习。  
-机器学习已经通过在线课程或者Coursera，EdX等的MOOC进行民主化，在这里我们向世界一流大学的杰出教授学习。 这里有一个有关于现在可用的数据科学列表[顶级MOOC列表](https://medium.freecodecamp.org/i-ranked-all-the-best-data-science-intro-courses-based-on-thousands-of-data-points- db5dc7e3eb8e)。  
+机器学习已经通过在线课程或者Coursera，EdX等的MOOC进行民主化，在这里我们向世界一流大学的杰出教授学习。 这里有一个有关于现在可用的数据科学列表[顶级MOOC列表](https://medium.freecodecamp.org/i-ranked-all-the-best-data-science-intro-courses-based-on-thousands-of-data-points-db5dc7e3eb8e)。  
 
 
 #### 第三阶段  巩固基础
@@ -69,16 +69,16 @@ Coursera创始人Andrew Ng是AI的先驱，开发了一个[机器学习课程](h
 为了容易的开始 我选择了泰坦尼克号的数据集  
 
 
-###### 数据集简介
+##### 数据集简介
 On 14 April 1912, the [RMS Titanic](https://en.wikipedia.org/wiki/RMS_Titanic) struck a large iceberg and took approximately 1,500 of its passengers and crew below the icy depths of the Atlantic Ocean. Considered one of the worst peacetime disasters at sea, this tragic event led to the creation of numerous [safety regulations and policies](http://www.gc.noaa.gov/gcil_titanic-history.html) to prevent such a catastrophe from happening again. Some critics, however, argue that circumstances other than luck resulted in a disproportionate number of deaths. The purpose of this analysis is to explore factors that influenced a person’s likelihood to survive.  
 上面的英文大概就是讲了一下泰坦尼克号的故事吧~  
 
 
-###### 选择软件 R
+##### 选择软件 R
 The following analysis was conducted in the [R software environment for statistical computing](https://www.r-project.org/).
 
 
-###### 下面的讲解主要以对话的形式进行  
+##### 下面的讲解主要以对话的形式进行  
 问：今天学啥？  
 答：数据科学基础  
  
@@ -97,7 +97,7 @@ The following analysis was conducted in the [R software environment for statisti
 答：不能  
 
 
-###### 导入数据集                                     
+##### 导入数据集                                     
 问：怎么把数据集插入到Rstudio  
 答：自己百度  
 
@@ -146,21 +146,16 @@ library(glmnet)
 问：现在可以导入数据集了吧  
 答：嗯   
 
-```
-{r, message=FALSE, warning=FALSE, results='hide'}
-
+```r
 train <- read_csv('../input/train.csv')
 test  <- read_csv('../input/test.csv')
 ```
 
-                                        
-#--为了研究完整的数据集，可以加入测试和训练数据集。
-#--在此之前，我们将添加一个新的列“set”，并为测试数据集命名为“test”
-#--和“训练”列车数据集，以了解它是哪条记录。
+为了研究完整的数据集，可以加入测试和训练数据集。  
+在此之前，我们将添加一个新的列“set”，并为测试数据集命名为“test”  
+和“训练”列车数据集，以了解它是哪条记录。  
 
-```
-{r , message=FALSE, warning=FALSE, results='hide'}
-
+```r
 train$set <- "train"
 test$set  <- "test"
 test$Survived <- NA
@@ -168,34 +163,32 @@ full <- rbind(train, test)
 ```
 
 
-问：我们已经处理了用于解决问题的原始数据
-答：嗯 接着处理
+问：我们已经处理了用于解决问题的原始数据  
+答：嗯 接着处理  
                                      
-问：为什么我们需要处理数据（数据缠绕）
-答：你收集的数据目前仍是原始数据，这很可能包含错误，缺失和腐败的价值。
-在您从数据中得出任何结论之前，您需要对其进行一些数据处理，
-这是我们下一节的主题。我们选择我们想要操作的数据
+问：为什么我们需要处理数据（数据缠绕）  
+答：你收集的数据目前仍是原始数据，这很可能包含错误，缺失和腐败的价值。  
+在您从数据中得出任何结论之前，您需要对其进行一些数据处理  
+这是我们下一节的主题。我们选择我们想要操作的数据  
                                                                         
-问：在数据科学下进行了哪些操作？
-答：这是所有的观点
-	这个给了一些清晰的观点 自己看图
+问：在数据科学下进行了哪些操作？  
+答：这是所有的观点  
 <center><img src="https://doubleclix.files.wordpress.com/2012/12/data-science-02.jpg"></center>
+这个给了一些清晰的观点 自己看图
 <center><img src="https://cdn-images-1.medium.com/max/1600/1*2T5rbjOBGVFdSvtlhCqlNg.png"></center>
                                                                           
-问：这看起来不错，把工具和语言都显示出来了
-答：在这里我们将使用R语言做处理                                                                                  
+问：这看起来不错，把工具和语言都显示出来了  
+答：在这里我们将使用R语言做处理                                        
 
                                                                                                                          
-#--在此之前，我们需要一个数据检擦 - 探索性分析（EDA）
-1.检查数据集的疏散
-2.数据集的维度
-3.列名
-4.每行有多少不同的值
-5.缺失值
+##### 在此之前，我们需要一个数据检擦 - 探索性分析（EDA）
+1. 检查数据集的疏散
+2. 数据集的维度
+3. 列名
+4. 每行有多少不同的值
+5. 缺失值
 
-```
-{r , message=FALSE, warning=FALSE, results='hide'}
-
+```r
 # check data 检查数据
 str(full)
 
@@ -243,22 +236,11 @@ checkAllCols = function(df){
   }
   resDF
 }
-
-#属性列表可视化
 ```
-{r , message=FALSE, warning=FALSE, results='hide'}
+
+```r
 library(DT)
-library(data.table)
-library(pander)
-library(ggplot2)
-library(scales)
-library(grid)
-library(gridExtra)
-library(corrplot)
-library(VIM) 
-library(knitr)
-library(vcd)
-library(caret)
+#属性列表可视化
 datatable(checkAllCols(full), style="bootstrap", class="table-condensed", options = list(dom = 'tp',scrollX = TRUE))
 
 <img src="/img/1-1.png"></img>
@@ -277,27 +259,24 @@ data.frame(miss=miss_pct, var=names(miss_pct), row.names=NULL) %>%
 ```
 
 
-## Feature engineering.
-问：什么是feature engineering
-答：该过程试图从数据中现有的原始特征创建额外的相关特征，并提高学习算法的预测能力。详情查看上面这个网址 https://github.com/bobbbbbi/Machine-learning-Feature-engineering-techniques
+##### Feature engineering.
+问：什么是feature engineering  
+答：该过程试图从数据中现有的原始特征创建额外的相关特征，并提高学习算法的预测能力。详情查看上面这个网址[连接](https://github.com/bobbbbbi/Machine-learning-Feature-engineering-techniques)
 
 
-#--数据操作                                                                                  
-问：我们已经了解了我们的数据集吧
-答：然后我们还需要做一些数据的处理
+##### 数据操作                                                                                  
+问：我们已经了解了我们的数据集吧  
+答：然后我们还需要做一些数据的处理  
                                     
-问：怎么进行数据处理
-答：数据操作是一个改变数据的过程，为了使其更容易阅读并且更有组织性
+问：怎么进行数据处理  
+答：数据操作是一个改变数据的过程，为了使其更容易阅读并且更有组织性  
                                                                                   
-#--下面的部分着重于准备数据，以便用于学习训练，比如探索性数据分析和建模拟合。
+下面的部分着重于准备数据，以便用于学习训练，比如探索性数据分析和建模拟合。  
 
-### 处理Age字段
-#-- 对于年龄的处理   将缺失值替换为平均值
-
-```
-{r age, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
-
-#-- mutate() 添加新的变量并保留现有的
+###### 处理Age字段
+#--对于年龄的处理   将缺失值替换为平均值
+```r
+# mutate() 添加新的变量并保留现有的
 full <- full %>%
     mutate(
       Age = ifelse(is.na(Age), mean(full$Age, na.rm=TRUE), Age),       #如果为空 就赋平均值
@@ -308,18 +287,15 @@ full <- full %>%
 
 ```
 
-### 处理Embarked字段
+###### 处理Embarked字段
 #--使用常见的符号（感觉是出现次数最多的 即S）来替换 Embarked 的空值
-```
-{r pp_embarked, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
+```r
 full$Embarked <- replace(full$Embarked, which(is.na(full$Embarked)), 'S')
 ```
 
-###处理 Titles字段
+###### 处理 Titles字段
 #--从Name特征中提取个人标题
-```
-{r pp_titles, message=FALSE, warning=FALSE, echo=TRUE, fig.height=4.5, fig.width=9}
-
+```r
 names <- full$Name
 title <-  gsub("^.*, (.*?)\\..*$", "\\1", names)
 full$title <- title
